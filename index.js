@@ -46,6 +46,17 @@ server.post("/hubs", (req, res) => {
 });
 
 // delete a hub
+server.delete("/hubs/:id", (req, res) => {
+  const hubId = req.params.id;
+
+  Hubs.remove(hubId)
+    .then(hub => {
+      res.status(200).json({ message: "hub deleted" });
+    })
+    .catch(error => {
+      res.status(500).json({ message: "error removing the hub" });
+    });
+});
 
 // update a hub
 
